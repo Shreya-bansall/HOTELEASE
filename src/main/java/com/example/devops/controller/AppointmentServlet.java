@@ -5,11 +5,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 @WebServlet("/bookAppointment")
 public class AppointmentServlet extends HttpServlet {
@@ -42,6 +47,21 @@ public class AppointmentServlet extends HttpServlet {
             e.printStackTrace();
             throw new ServletException("Database access error", e);
         }
+
+        // Set the path to the ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "C:/chromedriver");
+
+        // Create a new instance of the Chrome driver
+        WebDriver driver = new ChromeDriver();
+
+        // Navigate to a web page
+        driver.get("https://www.google.com");
+
+        // Find an element and perform an action
+        driver.findElement(By.linkText("About")).click();
+
+        // Close the browser window
+        driver.quit();
 
         response.sendRedirect("confirmation.jsp");
     }
