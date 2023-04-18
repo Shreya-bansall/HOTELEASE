@@ -45,7 +45,6 @@ public class AppointmentServlet extends HttpServlet {
             e.printStackTrace();
             throw new ServletException("Database access error", e);
         }
-
         // Set the path to the ChromeDriver executable
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver");
 
