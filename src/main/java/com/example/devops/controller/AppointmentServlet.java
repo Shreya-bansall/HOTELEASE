@@ -60,7 +60,6 @@ public class AppointmentServlet extends HttpServlet {
 
         // Close the browser window
         driver.quit();
-
         response.sendRedirect("confirmation.jsp");
     }
 }
