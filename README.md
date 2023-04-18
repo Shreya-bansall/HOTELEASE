@@ -1,3 +1,3 @@
 # HOTELEASE
-Hotel Management System
-Devops Project
+## Hotel Management System
+## Devops Project
