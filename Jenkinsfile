@@ -2,10 +2,9 @@ node {
   stage('SCM') {
     checkout scm
   }
-  stage('SonarQube Analysis') {
-    def mvn = tool 'MAVEN';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=hotelease -Dsonar.projectName='devops'"
-    }
-  }
+  withSonarQubeEnv('SonarQube Server') {
+  // Provide SonarQube username and password
+  sh 'sonar-scanner -Dsonar.login=shreya -Dsonar.password=123456'
+}
+
 }
