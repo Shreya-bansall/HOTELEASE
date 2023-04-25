@@ -29,36 +29,39 @@ public class AppointmentServlet extends HttpServlet {
         int children = Integer.parseInt(request.getParameter("children"));
         String roomType = request.getParameter("roomType");
 
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            String sql = "INSERT INTO appointments (checkin, checkout, adults, children, roomType) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, checkin);
-            statement.setString(2, checkout);
-            statement.setInt(3, adults);
-            statement.setInt(4, children);
-            statement.setString(5, roomType);
-            statement.executeUpdate();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException("Database access error", e);
+        // Insert data into the database
+        synchronized (this) {
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                String sql = "INSERT INTO appointments (checkin, checkout, adults, children, roomType) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setString(1, checkin);
+                statement.setString(2, checkout);
+                statement.setInt(3, adults);
+                statement.setInt(4, children);
+                statement.setString(5, roomType);
+                statement.executeUpdate();
+                statement.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new ServletException("Database access error", e);
+            }
         }
-        // Set the path to the ChromeDriver executable
-        System.setProperty("webdriver.chrome.driver", "C:/chromedriver");
 
-        // Create a new instance of the Chrome driver
-        WebDriver driver = new ChromeDriver();
-
-        // Navigate to a web page
-        driver.get("https://www.google.com");
-
-        // Find an element and perform an action
-        driver.findElement(By.linkText("About")).click();
-
-        // Close the browser window
-        driver.quit();
-        response.sendRedirect("confirmation.jsp");
+        // Perform web scraping using Selenium
+        try {
+            System.setProperty("webdriver.chrome.driver", "C:/chromedriver");
+            WebDriver driver = new ChromeDriver();
+            driver.get("https://www.google.com");
+            driver.findElement(By.linkText("About")).click();
+            driver.quit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServletException("Web scraping error", e);
+        } finally {
+            // Redirect to confirmation.jsp
+            response.sendRedirect("src/main/webapp/confirmation.jsp");
+        }
     }
 }
