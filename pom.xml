@@ -44,11 +44,31 @@
     <artifactId>ojdbc8</artifactId>
     <version>12.2.0.1</version>
     </dependency>
+<<<<<<< HEAD
+=======
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>5.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>5.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20210307</version>
+    </dependency>
+>>>>>>> 12d8ab82c0b26573c496964c92f1b21beb3e16ae
   </dependencies>
 
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <testSourceDirectory>src/test/java</testSourceDirectory>
+
     <plugins>
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
