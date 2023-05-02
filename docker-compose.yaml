@@ -1,0 +1,86 @@
+version: '3.7'  # version of compose format
+
+services:
+  landing-service:
+    build: ./landing  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5050:5050  # host:container
+    networks:
+      sample:
+        aliases:
+          - landing-service
+          
+  add-service:
+    build: ./addition  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5051:5051  # host:container
+    networks:
+      sample:
+        aliases:
+          - add-service
+          
+  minus-service:
+    build: ./subtraction  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5052:5052  # host:container
+    networks:
+      sample:
+        aliases:
+          - minus-service
+          
+  multiply-service:
+    build: ./multiplication  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5053:5053  # host:container
+    networks:
+      sample:
+        aliases:
+          - multiply-service
+          
+  division-service:
+    build: ./division  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5054:5054  # host:container
+    networks:
+      sample:
+        aliases:
+          - division-service
+          
+  gcd-service:
+    build: ./gcd  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5055:5055  # host:container
+    networks:
+      sample:
+        aliases:
+          - gcd-service
+          
+  lcm-service:
+    build: ./lcm  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5056:5056  # host:container
+    networks:
+      sample:
+        aliases:
+          - lcm-service
+          
+  exponential-service:
+    build: ./exponent  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5057:5057  # host:container
+    networks:
+      sample:
+        aliases:
+          - exponential-service
+  # Add more services below
+
+networks:
+  sample:

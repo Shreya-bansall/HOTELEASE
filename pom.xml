@@ -99,6 +99,21 @@
         </resources>
       </configuration>
     </plugin>
+
+    <plugin>
+      <groupId>org.sonarsource.scanner.maven</groupId>
+      <artifactId>sonar-maven-plugin</artifactId>
+      <version>3.9.0.2155</version>
+    </plugin>
+  <plugin>
+      <groupId>org.sonarsource.scanner.maven</groupId>
+      <artifactId>sonar-maven-plugin</artifactId>
+      <version>3.9.0.2155</version>
+      <configuration>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.projectKey>my-project</sonar.projectKey>
+      </configuration>
+    </plugin>
     </plugins>
   </build>
 </project>
